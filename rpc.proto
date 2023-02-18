@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "app/rpc";
+
+
+message ReadArg {
+    int64 pageNum = 1;
+}
+
+message ReadRes {
+    bytes bytes = 1;
+}
+
+message WriteArg {
+    int64 pageNum = 1;
+    bytes data = 2;
+}
+
+message WriteRes {}
+
+
+service MemoryServer {
+    rpc Write(WriteArg) returns (WriteRes);
+    rpc Read(ReadArg) returns (ReadRes);
+}
